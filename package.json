@@ -6,7 +6,7 @@
     "start": "ts-node src/server.ts",
     "start:dev": "NODE_ENV=development ts-node-dev --ignore-watch node_modules src/server.ts",
     "start:prod": "NODE_ENV=production node dist/server.js",
-    "build": "tsc",
+    "build": "tsc && npm run obfuscate && npm run minify",
     "migrate:make": "knex migrate:make --knexfile ./src/db/config.ts",
     "migrate:latest": "knex migrate:latest --knexfile ./src/db/config.ts",
     "migrate:rollback": "knex migrate:rollback --knexfile ./src/db/config.ts",
@@ -14,6 +14,8 @@
     "seed:run": "knex seed:run --knexfile ./src/db/config.ts",
     "lint": "eslint \"src/**/*.ts\"",
     "format": "prettier --write \"src/**/*.{ts,html,css,scss,json,md}\"",
+    "minify": "node minify.js",
+    "obfuscate": "npx javascript-obfuscator dist --output dist",
     "prepare": "husky"
   },
   "keywords": [],
